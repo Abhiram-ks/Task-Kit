@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:todokit/taskkit/core/error/registraction_error.dart';
-import 'package:todokit/taskkit/data/repository/auth_checking_repo.dart';
+import 'package:todokit/taskkit/domain/repository/auth_checking_repo.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 

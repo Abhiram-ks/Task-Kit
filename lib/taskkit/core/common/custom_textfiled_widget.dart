@@ -7,13 +7,16 @@ import '../themes/app_colors.dart';
 
 mixin FormFieldMixin {
   Widget buildTextFormField({
-    required String label,
+     String? label,
     required String hintText,
     required IconData prefixIcon,
     required BuildContext context,
     required TextEditingController controller,
     required String? Function(String?) validate,
     required double height,
+    bool isLabel = true,
+    int? maxlength,
+    int maxLine = 1,
     bool isfilterFiled = false,
     VoidCallback? fillterAction,
     bool isPasswordField = false,
@@ -33,13 +36,13 @@ mixin FormFieldMixin {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10.0, bottom: 5),
-              child: Text(
-                label,
+              child: isLabel ? Text(
+                label ?? '',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     color: AppPalette.black),
-              ),
+              ) : null
             ),
             BlocSelector<IconCubit, IconState, bool>(
               selector: (state) {
@@ -65,6 +68,8 @@ mixin FormFieldMixin {
                   enabled: enabled,
                   stylusHandwritingEnabled: true,
                   onChanged: onChanged,
+                  maxLength: maxlength,
+                  maxLines: maxLine,
                   decoration: InputDecoration(
                     filled: fillClr != null,
                     fillColor: fillClr,

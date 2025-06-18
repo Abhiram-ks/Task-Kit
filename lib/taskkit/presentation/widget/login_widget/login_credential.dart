@@ -51,6 +51,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> with FormFieldMixin {
             controller: _passwordController,
             validate: ValidatorHelper.loginValidation,
             height: widget.screenHeight,
+            isPasswordField: true,
           ),
           SizedBox(height: widget.screenHeight * .02),
           BlocListener<LoginBloc, LoginState>(

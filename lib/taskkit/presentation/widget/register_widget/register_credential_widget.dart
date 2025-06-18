@@ -56,6 +56,7 @@ class _RegisterCredentialFiledState extends State<RegisterCredentialFiled>  with
              isPasswordField: true,
             validate: ValidatorHelper.validatePassword,
             height: widget.height,
+            maxlength: 15,
           ),
           buildTextFormField(
             label: 'Confirm Password',

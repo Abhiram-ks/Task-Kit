@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todokit/taskkit/core/themes/app_colors.dart';
-import 'package:todokit/taskkit/data/repository/auth_checking_repo.dart';
+import 'package:todokit/taskkit/domain/repository/auth_checking_repo.dart';
 import 'package:todokit/taskkit/presentation/provider/bloc/login_bloc/login_bloc.dart';
 import 'package:todokit/taskkit/presentation/widget/login_widget/login_widgets.dart';
 

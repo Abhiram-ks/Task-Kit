@@ -10,6 +10,51 @@ class ValidatorHelper{
     return null;
   }
 
+    static String? serching(String? text){
+    return null;
+  }
+
+
+  static String? validateTaskTitle(String? val) {
+  if (val == null || val.trim().isEmpty) {
+    return 'Please enter a valid task.';
+  }
+
+  final trimmedName = val.trim();
+
+  if (trimmedName.length < 3) {
+    return 'Task must be at least 3 characters long.';
+  }
+
+  if (trimmedName.contains(RegExp(r'\s{2,}'))) {
+    return 'Avoid multiple spaces in the task.';
+  }
+
+  if (trimmedName.length > 80) {
+    return 'Task must be less than 80 characters.';
+  }
+
+  return null;
+}
+
+  static String? validateTaskDescription(String? val) {
+  if (val == null || val.trim().isEmpty) {
+    return 'Please enter a valid information about the task.';
+  }
+
+  final trimmedName = val.trim();
+
+  if (trimmedName.length < 10) {
+    return 'Description must be at least 10 characters long.';
+  }
+
+  if (trimmedName.length > 2000) {
+    return 'Task must be less than 2000 characters.';
+  }
+
+  return null;
+}
+
     static String? loginValidation(String? password){
     if(password == null || password.isEmpty){
       return 'please enter your password';
