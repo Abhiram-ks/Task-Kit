@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todokit/taskkit/presentation/provider/bloc/task_bloc/task_bloc.dart';
 import 'package:todokit/taskkit/presentation/widget/home_widget/home_fileter_customcard.dart';
 
 import '../../../core/themes/app_colors.dart';
@@ -28,7 +30,7 @@ class MyActivityFilteringCards extends StatelessWidget {
               icon: Icons.history_rounded,
               colors: Colors.black,
               onTap: () {
-               
+               context.read<TaskBloc>().add(TaskEventRequest(true));
               },
             ),
             VerticalDivider(color: AppPalette.hint),
@@ -38,7 +40,7 @@ class MyActivityFilteringCards extends StatelessWidget {
               icon: Icons.pending_actions_rounded,
               colors: AppPalette.orengeClr,
               onTap: () {
-               
+                 context.read<TaskBloc>().add(TaskEventFilterRequest(false));
               },
             ),
             VerticalDivider(color: AppPalette.hint),
@@ -48,7 +50,7 @@ class MyActivityFilteringCards extends StatelessWidget {
               icon: Icons.check_circle_outline_sharp,
               colors: Colors.green,
               onTap: () {
-              
+              context.read<TaskBloc>().add(TaskEventFilterRequest(true));
               },
             ),
           

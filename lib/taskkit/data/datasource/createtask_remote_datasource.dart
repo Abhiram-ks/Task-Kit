@@ -12,6 +12,7 @@ class CreatetaskRemoteDatasource {
       final docRef = _firestore.collection('tasks').doc();
       await docRef.set({
         'title':title,
+        'title_lowercase': title.toLowerCase(),
         'todoId':docRef.id,
         'description': description,
         'userId':userId,
