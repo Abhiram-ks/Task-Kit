@@ -8,6 +8,7 @@ class TasksModel {
   final bool isCompleted;
   final Timestamp createdAt;
   final Timestamp updatedAt;
+  final Timestamp dateTime;
 
   TasksModel({
     required this.todoId,
@@ -16,7 +17,8 @@ class TasksModel {
     required this.description,
     required this.isCompleted,
     required this.createdAt,
-    required this.updatedAt
+    required this.updatedAt,
+    required this.dateTime
   });
 
    factory TasksModel.fromMap(Map<String, dynamic> map) {
@@ -26,6 +28,7 @@ class TasksModel {
       title: map['title'] ?? '', 
       description: map['description'] ?? '', 
       isCompleted: map['isCompleted'] ?? false, 
+      dateTime: map['date_time'] ?? Timestamp.now(),
       createdAt: map['createdAt'] ?? Timestamp.now(),
       updatedAt: map['updatedAt'] ?? Timestamp.now());
    }

@@ -4,11 +4,12 @@ import 'package:todokit/taskkit/data/model/tasks_model.dart' show TasksModel;
 class TaskFileterRepository{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<List<TasksModel>> streamTask({required bool val}) {
+  Stream<List<TasksModel>> streamTask({required bool val, required String userId}) {
     final taskQuary = _firestore
          .collection('tasks')
-         .orderBy('createdAt', descending:  true)
-         .where('isCompleted', isEqualTo: val);
+         .where('userId', isEqualTo:userId )
+         .where('isCompleted', isEqualTo: val)
+         .orderBy('createdAt', descending:  true);
 
     return taskQuary.snapshots().map((snapshot) {
       try {

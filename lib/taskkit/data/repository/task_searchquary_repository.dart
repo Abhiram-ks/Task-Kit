@@ -4,7 +4,7 @@ import 'package:todokit/taskkit/data/model/tasks_model.dart';
 class TaskSearchquaryRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<List<TasksModel>> streamTask({required String query}) {
+  Stream<List<TasksModel>> streamTask({required String query, required String userId}) {
     String endQuery = query.isNotEmpty
         ? query.substring(0, query.length - 1) +
             String.fromCharCode(query.codeUnitAt(query.length - 1) + 1)
@@ -15,10 +15,12 @@ class TaskSearchquaryRepository {
     if (query.isEmpty) {
       taskQuery = _firestore
           .collection('tasks')
+          .where('userId', isEqualTo:userId )
           .orderBy('createdAt', descending: true);
     } else {
       taskQuery = _firestore
           .collection('tasks')
+          .where('userId', isEqualTo:userId )
           .orderBy('title_lowercase')
           .startAt([query])
           .endAt([endQuery]);

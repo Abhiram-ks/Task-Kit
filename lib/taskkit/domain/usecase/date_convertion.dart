@@ -11,3 +11,8 @@ String formatTimeRange(Timestamp startTime) {
   final String time = DateFormat.jm().format(startTime.toDate());
   return time;
 }
+
+
+Timestamp convertDateTimeToTimestamp(DateTime dateTime) {
+  return Timestamp.fromDate(dateTime);
+}

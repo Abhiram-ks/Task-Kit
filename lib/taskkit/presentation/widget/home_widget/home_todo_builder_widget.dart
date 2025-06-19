@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:todokit/taskkit/presentation/widget/home_widget/home_todo_cards_
 import '../../../core/themes/app_colors.dart';
 import '../../../domain/usecase/date_convertion.dart';
 import '../../provider/bloc/task_bloc/task_bloc.dart';
+import '../../screen/todo_data_screen/todo_data_screen.dart';
 
 Widget todoBuilderCard(
   BuildContext context,
@@ -93,6 +93,9 @@ Widget todoBuilderCard(
                       ),
                     ),
                   TransactionCardsWalletWidget(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TodoDataScreen(isEdit: false, todoId: task.todoId)));
+                    },
                     screenHeight: screenHeight,
                     title: task.title,
                     status: task.isCompleted ? 'Completed' : 'Pending',
@@ -103,6 +106,7 @@ Widget todoBuilderCard(
                     id: task.todoId,
                     description: task.description,
                     isMarked: task.isCompleted,
+                    dateTime: 'Duedate: ${formatDate(task.dateTime)} At ${formatTimeRange(task.dateTime)} ',
                   ),
                 ],
               );

@@ -6,6 +6,8 @@ import 'package:todokit/taskkit/core/common/custom_button_widget.dart';
 import 'package:todokit/taskkit/core/common/custom_snackbar_widget.dart';
 import 'package:todokit/taskkit/core/themes/app_colors.dart';
 import 'package:todokit/taskkit/presentation/provider/bloc/createtask_bloc/createtask_bloc.dart';
+import 'package:todokit/taskkit/presentation/provider/cubit/pick_datetime_cubit.dart/pick_datetime_cubit.dart';
+import 'package:todokit/taskkit/presentation/widget/add_widget/date_time_picker_widget.dart';
 import 'package:todokit/taskkit/presentation/widget/add_widget/handle_add_state.dart';
 
 import '../../../core/common/custom_textfiled_widget.dart';
@@ -32,6 +34,7 @@ class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
   Widget build(BuildContext context) {
     final TextEditingController titleController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
+    DateTime? dateTime;
     return Form(
       key: widget.formKey,
       child: Column(
@@ -46,7 +49,7 @@ class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
             validate: ValidatorHelper.validateTaskTitle,
             height: widget.height,
             maxlength: 80,
-            maxLine: 2
+            maxLine: 2,
           ),
           buildTextFormField(
             label: 'Task Description',
@@ -59,31 +62,44 @@ class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
             maxlength: 2000,
             maxLine: 6,
           ),
+          SizedBox(height: widget.height * 0.01),
+          pickedDateAndTimeWidget(dateTime: null),
           SizedBox(height: widget.height * 0.04),
           BlocListener<CreatetaskBloc, CreatetaskState>(
             listener: (context, state) {
-              handleBlocListener(context: context, state: state, titleController: titleController, descriptionController: descriptionController);
+              handleBlocListener(
+                context: context,
+                state: state,
+                titleController: titleController,
+                descriptionController: descriptionController,
+                dateTime: dateTime ?? DateTime.now()
+              );
             },
             child: ButtonComponents.actionButton(
               screenHeight: widget.height,
               screenWidth: widget.width,
               label: 'Create Task',
               onTap: () {
-                  if (!widget.formKey.currentState!.validate()) {
-                    showSnackBar(
-                      context: context,
-                      message:"Oops! You missed some required fields. Please complete them before proceeding.",
-                      bgColor: AppPalette.red,
-                      icon: CupertinoIcons.clear_circled,
-                    );
-                    return;
-                  }
-                  BlocProvider.of<CreatetaskBloc>(context).add(
-                    CreatetaskInitialEvent(
-                      titile: titleController.text.trim(),
-                      description: descriptionController.text.trim(),
-                    ),
+                final pickDatetimeState = context.read<PickDatetimeCubit>().state;
+                if (pickDatetimeState is PickedDateTimeRange) {
+                  dateTime = pickDatetimeState.dateTimeRange;
+                }
+                if (!widget.formKey.currentState!.validate() || dateTime == null) {
+                  showSnackBar(
+                    context: context,
+                    message: "Oops! You missed some required fields. Please complete them before proceeding.",
+                    bgColor: AppPalette.red,
+                    icon: CupertinoIcons.clear_circled,
                   );
+                  return;
+                }
+                BlocProvider.of<CreatetaskBloc>(context).add(
+                  CreatetaskInitialEvent(
+                    titile: titleController.text.trim(),
+                    description: descriptionController.text.trim(),
+                    dateTime: dateTime ?? DateTime.now(),
+                  ),
+                );
               },
             ),
           ),

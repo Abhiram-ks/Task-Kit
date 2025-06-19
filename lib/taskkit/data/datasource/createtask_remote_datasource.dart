@@ -7,6 +7,7 @@ class CreatetaskRemoteDatasource {
     required String title,
     required String description,
     required String userId,
+    required Timestamp dateTime,
   }) async {
     try {
       final docRef = _firestore.collection('tasks').doc();
@@ -18,6 +19,7 @@ class CreatetaskRemoteDatasource {
         'userId':userId,
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
+        'date_time': dateTime,
         'isCompleted': false,
       });
       

@@ -13,13 +13,13 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   Future<void> _onStartSplash(SplashEventStart event, Emitter<SplashState> emit) async {
     try {
-      const duration = Duration(milliseconds: 2000);
+      const duration = Duration(milliseconds: 800);
       final stopwatch = Stopwatch()..start();
 
       while (stopwatch.elapsed < duration) {
         for (double progress = 0.0; progress <= 1.0; progress += 0.01) {
           emit(SplashAnimating(progress));
-          await Future.delayed(const Duration(milliseconds: 10));
+          await Future.delayed(const Duration(milliseconds: 3));
         }
       }
    if (_auth.currentUser != null) {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todokit/taskkit/core/common/custom_appbar_widget.dart';
 import 'package:todokit/taskkit/presentation/provider/bloc/createtask_bloc/createtask_bloc.dart';
+import 'package:todokit/taskkit/presentation/provider/cubit/pick_datetime_cubit.dart/pick_datetime_cubit.dart';
 import 'package:todokit/taskkit/presentation/widget/add_widget/add_body_widget.dart';
 
 class AddTodoScreen extends StatelessWidget {
@@ -12,7 +13,10 @@ class AddTodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => CreatetaskBloc())],
+      providers: [
+        BlocProvider(create: (context) => CreatetaskBloc()),
+        BlocProvider(create: (context) => PickDatetimeCubit()),
+        ],
       child: LayoutBuilder(
         builder: (context, constraints) {
           double width = constraints.maxWidth;

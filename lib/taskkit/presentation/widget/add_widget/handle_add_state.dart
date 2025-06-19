@@ -11,6 +11,7 @@ void handleBlocListener({
   required CreatetaskState state,
   required TextEditingController titleController,
   required TextEditingController descriptionController,
+  required DateTime dateTime,
 }) {
   final button = context.read<ButtonProgressCubit>();
   if (state is CreatetaskLoading) {
@@ -40,6 +41,7 @@ void handleBlocListener({
               context.read<CreatetaskBloc>().add(CreatetaskInitialEvent(
                 titile: titleController.text.trim(),
                 description: descriptionController.text.trim(),
+                dateTime: dateTime
               ));
             },
           ),
