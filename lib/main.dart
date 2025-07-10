@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => SplashBloc()..add(SplashEventStart())),
-        BlocProvider(create: (_) => ButtonProgressCubit())
+        BlocProvider(create: (_) => ButtonProgressCubit())  
       ],
       child: MaterialApp(
-        title: 'Cavlog-Business',
+        title: 'Task Kit',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         home: SplashScreen(),

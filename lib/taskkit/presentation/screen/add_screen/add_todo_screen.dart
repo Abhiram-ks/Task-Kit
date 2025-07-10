@@ -8,7 +8,7 @@ import 'package:todokit/taskkit/presentation/widget/add_widget/add_body_widget.d
 
 class AddTodoScreen extends StatelessWidget {
    AddTodoScreen({super.key});
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,6 @@ class AddTodoScreen extends StatelessWidget {
               onTap: () => FocusScope.of(context).unfocus(),
 
               child: SingleChildScrollView(
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 physics: BouncingScrollPhysics(),
                 child: Padding(
                   padding: EdgeInsets.symmetric(

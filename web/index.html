@@ -27,12 +27,35 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="assets/taskkit.png"/>
 
   <title>todokit</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAhoopL1cToFoSEAl4qol9pcoUuAF65m_s",
+    authDomain: "task-kit-1f2d8.firebaseapp.com",
+    projectId: "task-kit-1f2d8",
+    storageBucket: "task-kit-1f2d8.firebasestorage.app",
+    messagingSenderId: "949501863944",
+    appId: "1:949501863944:web:53820b12b50a0b9a1a49bd",
+    measurementId: "G-TCJN2RWKC4"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>

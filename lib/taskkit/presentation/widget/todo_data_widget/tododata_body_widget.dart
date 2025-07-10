@@ -39,13 +39,6 @@ class _TodoDataBodyWidgetState extends State<TodoDataBodyWidget>
   }
 
   @override
-  void dispose() {
-    _textEditingController.dispose();
-    _descriptionController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<SpecificTaskBloc, SpecificTaskState>(
       builder: (context, state) {

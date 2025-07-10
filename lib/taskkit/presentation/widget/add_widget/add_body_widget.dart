@@ -28,13 +28,12 @@ class AddTodoBodyWidget extends StatefulWidget {
   State<AddTodoBodyWidget> createState() => _AddTodoBodyWidgetState();
 }
 
-class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
-    with FormFieldMixin {
-  @override
-  Widget build(BuildContext context) {
+class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>  with FormFieldMixin {
     final TextEditingController titleController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
     DateTime? dateTime;
+  @override
+  Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
       child: Column(
@@ -72,7 +71,8 @@ class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
                 state: state,
                 titleController: titleController,
                 descriptionController: descriptionController,
-                dateTime: dateTime ?? DateTime.now()
+                dateTime: dateTime ?? DateTime.now(), 
+                formKey: widget.formKey
               );
             },
             child: ButtonComponents.actionButton(
@@ -84,7 +84,9 @@ class _AddTodoBodyWidgetState extends State<AddTodoBodyWidget>
                 if (pickDatetimeState is PickedDateTimeRange) {
                   dateTime = pickDatetimeState.dateTimeRange;
                 }
+                
                 if (!widget.formKey.currentState!.validate() || dateTime == null) {
+                
                   showSnackBar(
                     context: context,
                     message: "Oops! You missed some required fields. Please complete them before proceeding.",

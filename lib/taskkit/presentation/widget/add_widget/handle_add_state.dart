@@ -12,14 +12,16 @@ void handleBlocListener({
   required TextEditingController titleController,
   required TextEditingController descriptionController,
   required DateTime dateTime,
+  required GlobalKey<FormState> formKey, 
 }) {
   final button = context.read<ButtonProgressCubit>();
   if (state is CreatetaskLoading) {
     button.startLoading();
   } else if (state is CreatetaskSuccess) {
     button.stopLoading();
-      titleController.clear();
-    descriptionController.clear();
+    formKey.currentState?.reset();
+    Navigator.pop(context);
+
     showSnackBar(
       context: context,
       message: "Task created successfully!",

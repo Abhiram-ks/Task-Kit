@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'task-kit-1f2d8.firebasestorage.app',
     measurementId: 'G-DBSGPW8LDH',
   );
+
 }
